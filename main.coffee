@@ -11,7 +11,7 @@ callback = (data) ->
 		a.attr('href', element.link);
 		a.text(element.title);
 		li.append(a);
-		li.append('<span class="grey">' + element.points + ' 10 minutes ago</span>');
+		li.append('<span class="grey">' + element.points + ' ' + jQuery.timeago(element.posted_at) + '</span>');
 		$('#list').append(li);
 
 
