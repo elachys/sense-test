@@ -15,7 +15,7 @@ callback = function(data) {
     a.attr('href', element.link);
     a.text(element.title);
     li.append(a);
-    li.append('<span class="grey">' + element.points + ' ' + jQuery.timeago(element.posted_at) + '</span>');
+    li.append('<span class="grey">' + element.points + ' ' + jQuery.timeago(parseInt(element.posted_at)) + '</span>');
     return $('#list').append(li);
   });
 };
@@ -32,36 +32,37 @@ sortElements = function(sortby) {
       return 0;
     }
     if (aval < bval) {
-      return -1;
+      return 1;
     }
     if (aval > bval) {
-      return 1;
+      return -1;
     }
   });
   return $('#list').empty().append(sorted);
 };
 
 /*
-	trending function for extra credit
-	velocity = distance / time
-	... so ...
-	trending = points / time
+    trending function for extra credit
+    velocity = distance / time
+    ... so ...
+    trending = points / time
 */
 
 
 trendingSortElements = function() {
-  var sorted;
+  var current, sorted;
+  current = new Date().getTime();
   sorted = $('#list li').sort(function(a, b) {
     var aVelocity, bVelocity;
-    aVelocity = parseInt($(a).attr('points')) / parseInt($(a).attr('posted_at'));
-    bVelocity = parseInt($(b).attr('points')) / parseInt($(b).attr('posted_at'));
+    aVelocity = parseInt($(a).attr('points')) / (current - parseInt($(a).attr('posted_at')));
+    bVelocity = parseInt($(b).attr('points')) / (current - parseInt($(b).attr('posted_at')));
     if (aVelocity === bVelocity) {
       return 0;
     }
-    if (aVelocity < bVelocity) {
+    if (aVelocity > bVelocity) {
       return -1;
     }
-    if (aVelocity > bVelocity) {
+    if (aVelocity < bVelocity) {
       return 1;
     }
   });
