@@ -5,7 +5,9 @@
   $ = jQuery;
 
   callback = function(data) {
-    return alert(data);
+    return $(data).each(function(element) {
+      return alert(element.title);
+    });
   };
 
   $.get('stories.json', null, callback, 'json');
