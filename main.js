@@ -17,8 +17,8 @@ callback = function(data) {
 $.get('stories.json', null, callback, 'json');
 
 sortElements = function(sortby) {
-  var elements;
-  return elements = $('#list li').sort(function(a, b) {
+  var sorted;
+  sorted = $('#list li').sort(function(a, b) {
     if ($(a).data(sortby) === $(b).data(sortby)) {
       return 0;
     }
@@ -29,4 +29,5 @@ sortElements = function(sortby) {
       return 1;
     }
   });
+  return $('#list').empty().append(sorted);
 };
