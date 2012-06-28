@@ -11,8 +11,6 @@
     });
   };
 
-  $(document).ready(function() {
-    return $.get('stories.json', null, callback, 'json');
-  });
+  $.get('stories.json', null, callback, 'json');
 
 }).call(this);
