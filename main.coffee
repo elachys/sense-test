@@ -12,7 +12,7 @@ callback = (data) ->
         a.text(element.title);
         li.append(a);
 
-        span = ('<span />');
+        span = $('<span />');
         span.addClass('grey');
         span.text(element.points + ' ' + jQuery.timeago(parseInt(element.posted_at)));
         li.append(span);
