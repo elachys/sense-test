@@ -6,7 +6,7 @@ $ = jQuery;
 callback = function(data) {
   $('body').append('<ol id="list"></ol>');
   return $(data).each(function(i, element) {
-    var a, li;
+    var a, li, span;
     li = $('<li />').attr({
       'posted_at': element.posted_at,
       'points': element.points
@@ -15,7 +15,10 @@ callback = function(data) {
     a.attr('href', element.link);
     a.text(element.title);
     li.append(a);
-    li.append('<span class="grey">' + element.points + ' ' + jQuery.timeago(parseInt(element.posted_at)) + '</span>');
+    span = '<span />';
+    span.addClass('grey');
+    span.text(element.points + ' ' + jQuery.timeago(parseInt(element.posted_at)));
+    li.append(span);
     return $('#list').append(li);
   });
 };

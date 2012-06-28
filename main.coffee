@@ -11,7 +11,12 @@ callback = (data) ->
         a.attr('href', element.link);
         a.text(element.title);
         li.append(a);
-        li.append('<span class="grey">' + element.points + ' ' + jQuery.timeago(parseInt(element.posted_at)    ) + '</span>');
+
+        span = ('<span />');
+        span.addClass('grey');
+        span.text(element.points + ' ' + jQuery.timeago(parseInt(element.posted_at)));
+        li.append(span);
+
         $('#list').append(li);
 
 
