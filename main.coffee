@@ -18,29 +18,16 @@ callback = (data) ->
 $.get 'stories.json', null , callback, 'json'
 
 sortElements = (sortby) ->
-
+    current = new Date().getTime();
     sorted = $('#list li').sort (a, b) ->
-        aval = parseInt($(a).attr(sortby));
-        bval = parseInt($(b).attr(sortby));
+        if (sortby == 'trending')
+            aval = parseInt($(a).attr('points')) / (current - parseInt($(a).attr('posted_at')));
+            bval = parseInt($(b).attr('points')) / (current - parseInt($(b).attr('posted_at')));
+        else 
+            aval = parseInt($(a).attr(sortby));
+            bval = parseInt($(b).attr(sortby));
 
         return 0 if aval == bval
         return 1 if aval < bval
         return -1 if aval > bval
-    $('#list').empty().append(sorted);
-
-    
-###
-    trending function for extra credit
-    velocity = distance / time
-    ... so ...
-    trending = points / time
-###
-trendingSortElements = () ->
-    current = new Date().getTime();
-    sorted = $('#list li').sort (a, b) ->
-        aVelocity = parseInt($(a).attr('points')) / (current - parseInt($(a).attr('posted_at')));
-        bVelocity = parseInt($(b).attr('points')) / (current - parseInt($(b).attr('posted_at')));
-        return 0 if aVelocity == bVelocity
-        return -1 if aVelocity > bVelocity
-        return 1 if aVelocity <     bVelocity
     $('#list').empty().append(sorted);
