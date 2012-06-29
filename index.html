@@ -2,12 +2,14 @@
 <html lang="en">
 <head class="no-js">
   <meta charset="utf-8" />
-  <title>Coding test</title>
-  <!-- only doing this because  i want to run it locally -->
-  <script type="text/javascript" src="jquery.min.js"></script>
+  <title>Sense coding test</title>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.timeago.js"></script>
   <script type="text/javascript" src="main.js"></script>
 </head>
 <body>
-
+	sort by: <a id="sortby-points" href="#" onclick="sortElements('points');">points</a> | 
+	<a id="sortby-posted_at" href="#" onclick="sortElements('posted_at');">date created</a> | 
+	<a id="sortby-trending" href="#" onclick="sortElements('trending');">trending</a>
 </body>
 </html>
